@@ -45,6 +45,7 @@ In the console, you can enter any string conforming to the following syntax rule
 |Inverse Cotangent  |FUNCTION           |arccot([expression])           |
 |Inverse Secant     |FUNCTION           |arcsec([expression])           |
 |Inverse Cosecant   |FUNCTION           |arccsc([expression])           |
+(where [expression] consists of objects, functions and operations)
 
 _Derivative_ will return the result after the output prompt `->`.
 
