@@ -52,9 +52,11 @@ _Derivative_ will return the result after the output prompt `->`.
 Here are some examples:
 
 `>> D(arctan(ln(x+a)),x)`
+
 `-> 1/((x+a)*(1+ln(x+a)^2))`
 
 `>> D(sin(x)+x^3,x)`
+
 `-> cosx+(x^3*3)/x`
 
 > The excitement continues. Stay tuned.
