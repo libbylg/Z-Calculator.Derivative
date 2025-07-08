@@ -1,0 +1,1750 @@
+% % 2025 Z·Calculator.Derivative
+
+\documentclass[UTF8,10pt]{ctexart}
+\usepackage{ntheorem,forest,enumitem}
+
+% Page settings
+
+\usepackage[b5paper,left=18.75mm,right=18.75mm,top=20mm,bottom=20mm]{geometry}
+\pagestyle{plain}
+
+% Commands Definitions
+
+\newcommand{\Bigskip}{\bigskip\medskip}
+\newcommand{\subtreeA}{\bf A}
+\newcommand{\subtreeB}{\bf B}
+\newcommand{\subtreeC}{\bf C}
+\newcommand{\I}{$_{\scriptscriptstyle 1}$}
+\newcommand{\II}{$_{\scriptscriptstyle 2}$}
+\newcommand{\III}{$_{\scriptscriptstyle 3}$}
+\newcommand{\IV}{$_{\scriptscriptstyle 4}$}
+\newcommand{\V}{$_{\scriptscriptstyle 5}$}
+\newcommand{\VI}{$_{\scriptscriptstyle 6}$}
+\newcommand{\VII}{$_{\scriptscriptstyle 7}$}
+\newcommand{\VIII}{$_{\scriptscriptstyle 8}$}
+\newcommand{\IX}{$_{\scriptscriptstyle 9}$}
+\newcommand{\X}{$_{\scriptscriptstyle 1\:\!\!0}$}
+\newcommand{\XI}{$_{\scriptscriptstyle 1\:\!\!1}$}
+\newcommand{\XII}{$_{\scriptscriptstyle 1\:\!\!2}$}
+\newcommand{\XIII}{$_{\scriptscriptstyle 1\:\!\!3}$}
+\newcommand{\XIV}{$_{\scriptscriptstyle 1\:\!\!4}$}
+\newcommand{\XV}{$_{\scriptscriptstyle 1\:\!\!5}$}
+\newcommand{\lc}{$_{\:\!\scriptscriptstyle\rm l\!}$}
+\newcommand{\rc}{$_{\:\!\scriptscriptstyle\rm r\!}$}
+
+\newcommand{\Derivative}{\rm D}
+\newcommand{\x}{$x$}
+\newcommand{\y}{$y$}
+\newcommand{\Zero}{$0$}
+\newcommand{\One}{$1$}
+\newcommand{\NegativeOne}{$-1$}
+\newcommand{\Two}{$2$}
+\newcommand{\Three}{$3$}
+\newcommand{\Four}{$4$}
+\newcommand{\Ten}{$10$}
+\newcommand{\EulersNumber}{\rm e}
+
+\newcommand{\Addition}{$+$}
+\newcommand{\Subtraction}{$-$}
+\newcommand{\Multiplication}{$\times$}
+\newcommand{\Division}{$\div$}
+\newcommand{\Power}{$\hat{\quad}$}
+\newcommand{\SquareRoot}{$\sqrt{\ \ }$}
+\newcommand{\CubeRoot}{$\,^{\scriptscriptstyle 3\:\!\!\!\!\!\!}\sqrt{\ \ }$}
+\newcommand{\NaturalExponent}{\rm e\,$\hat{\ }$}
+\newcommand{\DecimalExponent}{\Ten\,$\hat{\ }$}
+\newcommand{\NaturalLogarithm}{\rm ln}
+\newcommand{\DecimalLogarithm}{\rm lg}
+\newcommand{\Sine}{\rm sin}
+\newcommand{\Cosine}{\rm cos}
+\newcommand{\Tangent}{\rm tan}
+\newcommand{\Cotangent}{\rm cot}
+\newcommand{\Secant}{\rm sec}
+\newcommand{\Cosecant}{\rm csc}
+\newcommand{\InverseSine}{\rm arcsin}
+\newcommand{\InverseCosine}{\rm arccos}
+\newcommand{\InverseTangent}{\rm arctan}
+\newcommand{\InverseCotangent}{\rm arccot}
+\newcommand{\InverseSecant}{\rm arcsec}
+\newcommand{\InverseCosecant}{\rm arccsc}
+
+% Theorems Definitions
+
+\newtheorem*{Element.LeftIdentity}{\bf Element.LeftIdentity }
+\newtheorem*{Element.RightIdentity}{\bf Element.RightIdentity }
+\newtheorem*{Element.LeftZero}{\bf Element.LeftZero }
+\newtheorem*{Element.RightZero}{\bf Element.RightZero }
+\newtheorem*{Element.Merger}{\bf Element.Merger }
+\newtheorem*{Element.Absorption}{\bf Element.Absorption }
+\newtheorem*{Element.ExponentValues}{\bf Element.ExponentValues }
+\newtheorem*{Element.LogarithmValues}{\bf Element.LogarithmValues }
+\newtheorem*{Element.ExponentInverse}{\bf Element.ExponentInverse }
+\newtheorem*{Derivative.Element}{\bf Derivative.Element }
+\newtheorem*{Derivative.Addition}{\bf Derivative.Addition }
+\newtheorem*{Derivative.Subtraction}{\bf Derivative.Subtraction }
+\newtheorem*{Derivative.Multiplication}{\bf Derivative.Multiplication }
+\newtheorem*{Derivative.Division}{\bf Derivative.Division }
+\newtheorem*{Derivative.Power}{\bf Derivative.Power }
+\newtheorem*{Derivative.SquareRoot}{\bf Derivative.SquareRoot }
+\newtheorem*{Derivative.CubeRoot}{\bf Derivative.CubeRoot }
+\newtheorem*{Derivative.NaturalExponent}{\bf Derivative.NaturalExponent }
+\newtheorem*{Derivative.DecimalExponent}{\bf Derivative.DecimalExponent }
+\newtheorem*{Derivative.NaturalLogarithm}{\bf Derivative.NaturalLogarithm }
+\newtheorem*{Derivative.DecimalLogarithm}{\bf Derivative.DecimalLogarithm }
+\newtheorem*{Derivative.Sine}{\bf Derivative.Sine }
+\newtheorem*{Derivative.Cosine}{\bf Derivative.Cosine }
+\newtheorem*{Derivative.Tangent}{\bf Derivative.Tangent }
+\newtheorem*{Derivative.Cotangent}{\bf Derivative.Cotangent }
+\newtheorem*{Derivative.Secant}{\bf Derivative.Secant }
+\newtheorem*{Derivative.Cosecant}{\bf Derivative.Cosecant }
+\newtheorem*{Derivative.InverseSine}{\bf Derivative.InverseSine }
+\newtheorem*{Derivative.InverseCosine}{\bf Derivative.InverseCosine }
+\newtheorem*{Derivative.InverseTangent}{\bf Derivative.InverseTangent }
+\newtheorem*{Derivative.InverseCotangent}{\bf Derivative.InverseCotangent }
+\newtheorem*{Derivative.InverseSecant}{\bf Derivative.InverseSecant }
+\newtheorem*{Derivative.InverseCosecant}{\bf Derivative.InverseCosecant }
+
+\begin{document}
+
+    \thispagestyle{empty}
+    \ \\[80mm]
+    \mbox{}\hfill{\Huge\bf Model .Derivative}\hfill\mbox{}\\[5mm]
+    \mbox{}\hfill{\Large Tree Transformation Illustrations}\hfill\mbox{}
+
+	\newpage
+
+	{\noindent\Large\bf Notations}
+	\begin{itemize}[leftmargin=*]
+	\item {\x} and {\y} represent any variable nodes.
+	\item {\subtreeA} and {\subtreeB} represent any subtrees.
+	\item {\color{purple}Purple node} represents the argument node of the tree transformation function.
+	\item {\color{orange}Orange node} comes from node's duplication, which requires a positioning sequence (argument node $\to$ template node) as an item of the generation sequence.
+	\item {\color{teal}Teal subtree} comes from subtree's duplication, which requires a Primer and a positioning sequence (argument node $\to$ template subtree's root node) as two items of the generation sequence.
+	\item The sequence of $_{\scriptscriptstyle\rm l}$s and $_{\scriptscriptstyle\rm r}$s at the bottom-right corner of the node(subtree) is its(its root node's) positioning sequence.
+	\item The number at the bottom-left corner of the node(subtree) is its(its root node's) traversal order in depth-first search(DFS).
+	\end{itemize}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Element.LeftIdentity}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Addition,purple
+							[\Zero\lc]
+							[\subtreeA\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\subtreeA,teal]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Multiplication,purple
+							[\One\lc]
+							[\subtreeA\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\subtreeA,teal]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Element.LeftIdentity}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Element.RightIdentity}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Addition,purple
+							[\subtreeA\lc]
+							[\Zero\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\subtreeA,teal]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Subtraction,purple
+							[\subtreeA\lc]
+							[\Zero\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\subtreeA,teal]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Multiplication,purple
+							[\subtreeA\lc]
+							[\One\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\subtreeA,teal]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Division,purple
+							[\subtreeA\lc]
+							[\One\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\subtreeA,teal]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Power,purple
+							[\subtreeA\lc]
+							[\One\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\subtreeA,teal]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Element.RightIdentity}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Element.LeftZero}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Multiplication,purple
+							[\Zero\lc]
+							[\subtreeA\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Zero]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Division,purple
+							[\Zero\lc]
+							[\subtreeA\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Zero]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Power,purple
+							[\One\lc]
+							[\subtreeA\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\One]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Element.LeftZero}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Element.RightZero}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Multiplication,purple
+							[\subtreeA\lc]
+							[\Zero\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Zero]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Element.RightZero}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Element.Merger}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Addition,purple
+							[\Subtraction\lc
+								[\subtreeA\lc\lc]
+								[\subtreeB\lc\rc]
+							]
+							[\subtreeC\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Subtraction
+							[\II\Addition
+								[\III\subtreeA,teal]
+								[\IV\subtreeC,teal]
+							]
+							[\V\subtreeB,teal]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Addition,purple
+							[\subtreeA\lc]
+							[\Subtraction\rc
+								[\subtreeB\rc\lc]
+								[\subtreeC\rc\rc]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Subtraction
+							[\II\Addition
+								[\III\subtreeA,teal]
+								[\IV\subtreeB,teal]
+							]
+							[\V\subtreeC,teal]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Multiplication,purple
+							[\Division\lc
+								[\subtreeA\lc\lc]
+								[\subtreeB\lc\rc]
+							]
+							[\subtreeC\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\Multiplication
+								[\III\subtreeA,teal]
+								[\IV\subtreeC,teal]
+							]
+							[\V\subtreeB,teal]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication,purple
+							[\subtreeA\lc]
+							[\Division\rc
+								[\subtreeB\rc\lc]
+								[\subtreeC\rc\rc]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\Multiplication
+								[\III\subtreeA,teal]
+								[\IV\subtreeB,teal]
+							]
+							[\V\subtreeC,teal]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Element.Merger}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Element.Absorption}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Subtraction,purple
+							[\Subtraction\lc
+								[\subtreeA\lc\lc]
+								[\subtreeB\lc\rc]
+							]
+							[\subtreeC\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Subtraction
+							[\II\subtreeA,teal]
+							[\III\Addition
+								[\IV\subtreeB,teal]
+								[\V\subtreeC,teal]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Subtraction,purple
+							[\subtreeA\lc]
+							[\Subtraction\rc
+								[\subtreeB\rc\lc]
+								[\subtreeC\rc\rc]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Subtraction
+							[\II\Addition
+								[\III\subtreeA,teal]
+								[\IV\subtreeC,teal]
+							]
+							[\V\subtreeB,teal]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Division,purple
+							[\Division\lc
+								[\subtreeA\lc\lc]
+								[\subtreeB\lc\rc]
+							]
+							[\subtreeC\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\subtreeA,teal]
+							[\III\Multiplication
+								[\IV\subtreeB,teal]
+								[\V\subtreeC,teal]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Division,purple
+							[\subtreeA\lc]
+							[\Division\rc
+								[\subtreeB\rc\lc]
+								[\subtreeC\rc\rc]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\Multiplication
+								[\III\subtreeA,teal]
+								[\IV\subtreeC,teal]
+							]
+							[\V\subtreeB,teal]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Power,purple
+							[\Power\lc
+								[\subtreeA\lc\lc]
+								[\subtreeB\lc\rc]
+							]
+							[\subtreeC\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Power
+							[\II\subtreeA,teal]
+							[\III\Multiplication
+								[\IV\subtreeB,teal]
+								[\V\subtreeC,teal]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Element.Absorption}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Derivative.Element}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\x\lc]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\One]
+					]
+				\end{forest}
+			\end{tabular}
+			\par\bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\y\lc]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Zero]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Element}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Derivative.Addition}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\Addition\lc
+								[\subtreeA\lc\lc]
+								[\subtreeB\lc\rc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Addition
+							[\II\Derivative
+								[\III\subtreeA,teal]
+								[\IV\x,orange]
+							]
+							[\V\Derivative
+								[\VI\subtreeB,teal]
+								[\VII\x,orange]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Addition}
+		\bigskip
+		\begin{Derivative.Subtraction}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\Subtraction\lc
+								[\subtreeA\lc\lc]
+								[\subtreeB\lc\rc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Subtraction
+							[\II\Derivative
+								[\III\subtreeA,teal]
+								[\IV\x,orange]
+							]
+							[\V\Derivative
+								[\VI\subtreeB,teal]
+								[\VII\x,orange]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Subtraction}
+		\bigskip
+		\begin{Derivative.Multiplication}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\Multiplication\lc
+								[\subtreeA\lc\lc]
+								[\subtreeB\lc\rc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Addition
+							[\II\Multiplication
+								[\III\Derivative
+									[\IV\subtreeA,teal]
+									[\V\x,orange]
+								]
+								[\VI\subtreeB,teal]
+							]
+							[\VII\Multiplication
+								[\VIII\subtreeA,teal]
+								[\IX\Derivative
+									[\X\subtreeB,teal]
+									[\XI\x,orange]
+								]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Multiplication}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Derivative.Division}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\Division\lc
+								[\subtreeA\lc\lc]
+								[\subtreeB\lc\rc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\Subtraction
+								[\III\Multiplication
+									[\IV\Derivative
+										[\V\subtreeA,teal]
+										[\VI\x,orange]
+									]
+									[\VII\subtreeB,teal]
+								]
+								[\VIII\Multiplication
+									[\IX\subtreeA,teal]
+									[\X\Derivative
+										[\XI\subtreeB,teal]
+										[\XII\x,orange]
+									]
+								]
+							]
+							[\XIII\Power
+								[\XIV\subtreeB,teal]
+								[\XV\Two]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Division}
+		\bigskip
+		\begin{Derivative.Power}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\Power\lc
+								[\subtreeA\lc\lc]
+								[\subtreeB\lc\rc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\Power
+								[\III\subtreeA,teal]
+								[\IV\subtreeB,teal]
+							]
+							[\V\Derivative
+								[\VI\Multiplication
+									[\VII\NaturalLogarithm
+										[\VIII\subtreeA,teal]
+									]
+									[\IX\subtreeB,teal]
+								]
+								[\X\x,orange]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Power}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Derivative.SquareRoot}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\SquareRoot\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\Derivative
+								[\III\subtreeA,teal]
+								[\IV\x,orange]
+							]
+							[\V\Multiplication
+								[\VI\Two]
+								[\VII\SquareRoot
+									[\VIII\subtreeA,teal]
+								]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.SquareRoot}
+		\bigskip
+		\begin{Derivative.CubeRoot}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\CubeRoot\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\Multiplication
+								[\III\CubeRoot
+									[\IV\subtreeA,teal]
+								]
+								[\V\Derivative
+									[\VI\subtreeA,teal]
+									[\VII\x,orange]
+								]
+							]
+							[\VIII\Multiplication
+								[\IX\Three]
+								[\X\subtreeA,teal]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.CubeRoot}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Derivative.NaturalExponent}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\NaturalExponent\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\NaturalExponent
+								[\III\subtreeA,teal]
+							]
+							[\IV\Derivative
+								[\V\subtreeA,teal]
+								[\VI\x,orange]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.NaturalExponent}
+		\bigskip
+		\begin{Derivative.DecimalExponent}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\DecimalExponent\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\Multiplication
+								[\III\NaturalLogarithm
+									[\IV\Ten]
+								]
+								[\V\DecimalExponent
+									[\VI\subtreeA,teal]
+								]
+							]
+							[\VII\Derivative
+								[\VIII\subtreeA,teal]
+								[\IX\x,orange]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.DecimalExponent}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Derivative.NaturalLogarithm}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\NaturalLogarithm\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\Derivative
+								[\III\subtreeA,teal]
+								[\IV\x,orange]
+							]
+							[\V\subtreeA,teal]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.NaturalLogarithm}
+		\bigskip
+		\begin{Derivative.DecimalLogarithm}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\DecimalLogarithm\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\Derivative
+								[\III\subtreeA,teal]
+								[\IV\x,orange]
+							]
+							[\V\Multiplication
+								[\VI\NaturalLogarithm
+									[\VII\Ten]
+								]
+								[\VIII\subtreeA,teal]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.DecimalLogarithm}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Derivative.Sine}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\Sine\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\Cosine
+								[\III\subtreeA,teal]
+							]
+							[\IV\Derivative
+								[\V\subtreeA,teal]
+								[\VI\x,orange]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Sine}
+		\bigskip
+		\begin{Derivative.Cosine}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\Cosine\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\Multiplication
+								[\III\NegativeOne]
+								[\IV\Sine
+									[\V\subtreeA,teal]
+								]
+							]
+							[\VI\Derivative
+								[\VII\subtreeA,teal]
+								[\VIII\x,orange]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Cosine}
+		\bigskip
+		\begin{Derivative.Tangent}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\Tangent\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\Power
+								[\III\Secant
+									[\IV\subtreeA,teal]
+								]
+								[\V\Two]
+							]
+							[\VI\Derivative
+								[\VII\subtreeA,teal]
+								[\VIII\x,orange]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Tangent}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Derivative.Cotangent}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\Cotangent\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\Multiplication
+								[\III\NegativeOne]
+								[\IV\Power
+									[\V\Cosecant
+										[\VI\subtreeA,teal]
+									]
+									[\VII\Two]
+								]
+							]
+							[\VIII\Derivative
+								[\IX\subtreeA,teal]
+								[\X\x,orange]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Cotangent}
+		\bigskip
+		\begin{Derivative.Secant}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\Secant\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\Multiplication
+								[\III\Secant
+									[\IV\subtreeA,teal]
+								]
+								[\V\Tangent
+									[\VI\subtreeA,teal]
+								]
+							]
+							[\VII\Derivative
+								[\VIII\subtreeA,teal]
+								[\IX\x,orange]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Secant}
+		\bigskip
+		\begin{Derivative.Cosecant}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\Cosecant\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\Multiplication
+								[\III\NegativeOne]
+								[\IV\Multiplication
+									[\V\Cosecant
+										[\VI\subtreeA,teal]
+									]
+									[\VII\Cotangent
+										[\VIII\subtreeA,teal]
+									]
+								]
+							]
+							[\IX\Derivative
+								[\X\subtreeA,teal]
+								[\XI\x,orange]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.Cosecant}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Derivative.InverseSine}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\InverseSine\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\Derivative
+								[\III\subtreeA,teal]
+								[\IV\x,orange]
+							]
+							[\V\SquareRoot
+								[\VI\Subtraction
+									[\VII\One]
+									[\VIII\Power
+										[\IX\subtreeA,teal]
+										[\X\Two]
+									]
+								]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.InverseSine}
+		\bigskip
+		\begin{Derivative.InverseCosine}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\InverseCosine\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\NegativeOne]
+							[\III\Division
+								[\IV\Derivative
+									[\V\subtreeA,teal]
+									[\VI\x,orange]
+								]
+								[\VII\SquareRoot
+									[\VIII\Subtraction
+										[\IX\One]
+										[\X\Power
+											[\XI\subtreeA,teal]
+											[\XII\Two]
+										]
+									]
+								]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.InverseCosine}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Derivative.InverseTangent}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\InverseTangent\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\Derivative
+								[\III\subtreeA,teal]
+								[\IV\x,orange]
+							]
+							[\V\Addition
+								[\VI\One]
+								[\VII\Power
+									[\VIII\subtreeA,teal]
+									[\IX\Two]
+								]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.InverseTangent}
+		\begin{Derivative.InverseCotangent}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\InverseCotangent\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\NegativeOne]
+							[\III\Division
+								[\IV\Derivative
+									[\V\subtreeA,teal]
+									[\VI\x,orange]
+								]
+								[\VII\Addition
+									[\VIII\One]
+									[\IX\Power
+										[\X\subtreeA,teal]
+										[\XI\Two]
+									]
+								]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.InverseCotangent}
+	\vspace*{\fill}\end{center}
+
+	\newpage
+
+	\begin{center}\vspace*{\fill}
+		\begin{Derivative.InverseSecant}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\InverseSecant\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Division
+							[\II\Derivative
+								[\III\subtreeA,teal]
+								[\IV\x,orange]
+							]
+							[\V\SquareRoot
+								[\VI\Subtraction
+									[\VII\Power
+										[\VIII\subtreeA,teal]
+										[\IX\Four]
+									]
+									[\X\Power
+										[\XI\subtreeA,teal]
+										[\XII\Two]
+									]
+								]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.InverseSecant}
+		\bigskip
+		\begin{Derivative.InverseCosecant}
+			\qquad\par\Bigskip
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\Derivative,purple
+							[\InverseCosecant\lc
+								[\subtreeA\lc\lc]
+							]
+							[\x\rc]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+			\qquad
+			$\longrightarrow$
+			\qquad
+			\begin{tabular}{c}
+				\begin{forest}
+					for tree={s sep=8mm}
+					[
+						[\I\Multiplication
+							[\II\NegativeOne]
+							[\III\Division
+								[\IV\Derivative
+									[\V\subtreeA,teal]
+									[\VI\x,orange]
+								]
+								[\VII\SquareRoot
+									[\VIII\Subtraction
+										[\IX\Power
+											[\X\subtreeA,teal]
+											[\XI\Four]
+										]
+										[\XII\Power
+											[\XIII\subtreeA,teal]
+											[\XIV\Two]
+										]
+									]
+								]
+							]
+						]
+					]
+				\end{forest}
+			\end{tabular}
+		\end{Derivative.InverseCosecant}
+	\vspace*{\fill}\end{center}
+
+\end{document}
