@@ -10,4 +10,4 @@
 // Parser Applications
 
 void Parser_operator(char *);
-void * * Parser(const char *, tree *);
+const void * * Parser(const char *, tree *);
