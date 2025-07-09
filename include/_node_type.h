@@ -42,6 +42,6 @@ struct operation_type {
 
 };
 
-// Code Optimization
+// Node Type Utilities
 
 # define type_check(Type,TypeName)  (!strcmp((Type)->name, TypeName))
