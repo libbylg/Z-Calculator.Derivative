@@ -5,7 +5,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include "_variable.h"
-# include "_node_type.h"
 # include "_node.h"
 
 // Variable List Utilities
