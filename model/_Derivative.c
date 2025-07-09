@@ -11,57 +11,56 @@
 // Function-like Macros
 
 # define D_sequence_Set_0(Num,Name) \
-    D_single_sequence[Num] = malloc(2*sizeof(void *)); \
+    D_single_sequence[Num] = malloc(2 * sizeof(void *)); \
     D_single_sequence[Num][0] = (void * * *)trans_invoke; \
-    D_single_sequence[Num][1] = malloc(3*sizeof(void *)); \
+    D_single_sequence[Num][1] = malloc(3 * sizeof(void *)); \
     D_single_sequence[Num][1][0] = (void * *)trans_format_p; \
-    D_single_sequence[Num][1][1] = malloc(2*sizeof(void *)); \
+    D_single_sequence[Num][1][1] = malloc(2 * sizeof(void *)); \
     D_single_sequence[Num][1][1][0] = (void * *)D_##Name##_; \
     D_single_sequence[Num][1][1][1] = (void * *)D_##Name; \
     D_single_sequence[Num][1][2] = NULL
 
 # define D_sequence_Set_1(Num,Name,PosSequence) \
-    D_single_sequence[Num] = malloc(2*sizeof(void *)); \
+    D_single_sequence[Num] = malloc(2 * sizeof(void *)); \
     D_single_sequence[Num][0] = (void * * *)trans_invoke; \
-    D_single_sequence[Num][1] = malloc(4*sizeof(void *)); \
+    D_single_sequence[Num][1] = malloc(4 * sizeof(void *)); \
     D_single_sequence[Num][1][0] = (void * *)trans_format_p; \
-    D_single_sequence[Num][1][1] = malloc(2*sizeof(void *)); \
+    D_single_sequence[Num][1][1] = malloc(2 * sizeof(void *)); \
     D_single_sequence[Num][1][1][0] = (void * *)D_##Name##_; \
     D_single_sequence[Num][1][1][1] = (void * *)D_##Name; \
-    D_single_sequence[Num][1][2] = malloc(3*sizeof(void *)); \
+    D_single_sequence[Num][1][2] = malloc(3 * sizeof(void *)); \
     D_single_sequence[Num][1][2][0] = Derivative_single; \
     D_single_sequence[Num][1][2][1] = PosSequence; \
     D_single_sequence[Num][1][2][2] = NULL; \
     D_single_sequence[Num][1][3] = NULL
 
 # define D_sequence_Set_2(Num,Name,PosSequence1,PosSequence2) \
-    D_single_sequence[Num] = malloc(2*sizeof(void *)); \
+    D_single_sequence[Num] = malloc(2 * sizeof(void *)); \
     D_single_sequence[Num][0] = (void * * *)trans_invoke; \
-    D_single_sequence[Num][1] = malloc(5*sizeof(void *)); \
+    D_single_sequence[Num][1] = malloc(5 * sizeof(void *)); \
     D_single_sequence[Num][1][0] = (void * *)trans_format_p; \
-    D_single_sequence[Num][1][1] = malloc(2*sizeof(void *)); \
+    D_single_sequence[Num][1][1] = malloc(2 * sizeof(void *)); \
     D_single_sequence[Num][1][1][0] = (void * *)D_##Name##_; \
     D_single_sequence[Num][1][1][1] = (void * *)D_##Name; \
-    D_single_sequence[Num][1][2] = malloc(3*sizeof(void *)); \
+    D_single_sequence[Num][1][2] = malloc(3 * sizeof(void *)); \
     D_single_sequence[Num][1][2][0] = Derivative_single; \
     D_single_sequence[Num][1][2][1] = PosSequence1; \
     D_single_sequence[Num][1][2][2] = NULL; \
-    D_single_sequence[Num][1][3] = malloc(3*sizeof(void *)); \
+    D_single_sequence[Num][1][3] = malloc(3 * sizeof(void *)); \
     D_single_sequence[Num][1][3][0] = Derivative_single; \
     D_single_sequence[Num][1][3][1] = PosSequence2; \
     D_single_sequence[Num][1][3][2] = NULL; \
     D_single_sequence[Num][1][4] = NULL
 
 # define E_sequence_Set(Num,Name) \
-    E_utmost_sequence[Num] = malloc(2*sizeof(void *)); \
+    E_utmost_sequence[Num] = malloc(2 * sizeof(void *)); \
     E_utmost_sequence[Num][0] = (void * *)trans_format_p; \
-    E_utmost_sequence[Num][1] = malloc(2*sizeof(void *)); \
+    E_utmost_sequence[Num][1] = malloc(2 * sizeof(void *)); \
     E_utmost_sequence[Num][1][0] = E_##Name##_; \
     E_utmost_sequence[Num][1][1] = E_##Name
 
 // Type Definitions
 
-object_type Any_Type = {"Any Type"};
 object_type Primer = {"Primer"};
 object_type Variable = {"Variable"};
 object_type Real = {"Real"};
@@ -94,7 +93,7 @@ operation_type Division = {"Division", "quotient", "/", MUL_PREC};
 operation_type Power = {"Power", "power", "^", POW_PREC};
 operation_type Derivative = {"Derivative", "D", "@", MAX_PREC};
 
-function_type * function_list[] = {
+const function_type * function_list[] = {
 
     &Square_Root,
     &Cube_Root,
@@ -118,7 +117,7 @@ function_type * function_list[] = {
 
 };
 
-operation_type * operation_list[] = {
+const operation_type * operation_list[] = {
 
     &Addition,
     &Subtraction,
@@ -908,7 +907,6 @@ void * * * * * D_single_sequence;
 
 trans Derivative_single(node * node_, void * * sequence_){
 
-    // Derivative
     // [REMARK] The argument sequence will always be NULL.
 
     if(node_->category == OPERATION && (operation_type *)node_->type == &Derivative){
@@ -926,7 +924,7 @@ trans Derivative_single(node * node_, void * * sequence_){
 
 void Derivative_initializer(void){
 
-    D_single_sequence = malloc(26*sizeof(void *));
+    D_single_sequence = malloc(26 * sizeof(void *));
     D_sequence_Set_0(0, Element_Zero);
     D_sequence_Set_0(1, Element_One);
     D_sequence_Set_2(2, Addition, "l", "r");
@@ -954,7 +952,7 @@ void Derivative_initializer(void){
     D_sequence_Set_1(24, Inverse_Cosecant, "rl");
     D_single_sequence[25] = NULL;
 
-    E_utmost_sequence = malloc(21*sizeof(void *));
+    E_utmost_sequence = malloc(21 * sizeof(void *));
     E_sequence_Set(0, Left_Identity_Addition);
     E_sequence_Set(1, Left_Identity_Multiplication);
     E_sequence_Set(2, Right_Identity_Addition);
