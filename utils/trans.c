@@ -47,8 +47,8 @@ const void * const * format_subtree(node * const parent_, const int index_, cons
                 _node_->child_r = NULL;
             } else{
                 const char * const value = (char *)*sequence_++;
-                
-                _node_->child_l = malloc((strlen(value)+1)*sizeof(char));
+
+                _node_->child_l = malloc((strlen(value)+1) * sizeof(char));
                 strcpy((char *)_node_->child_l, value);
                 _node_->child_r = NULL;
             }
@@ -88,7 +88,7 @@ void duplicate_subtree(node * const parent_, const int index_, const node * cons
             if(type_check((object_type *)template_->type, "Variable")){
                 _node_->child_l = template_->child_l;
             } else{
-                _node_->child_l = malloc((strlen((char *)template_->child_l)+1)*sizeof(char));
+                _node_->child_l = malloc((strlen((char *)template_->child_l)+1) * sizeof(char));
                 strcpy((char *)_node_->child_l, (char *)template_->child_l);
             }
             _node_->child_r = NULL;
@@ -141,6 +141,7 @@ void remove_subtree(node * const subroot_){
 trans trans_format(node * const node_, const void * const * const sequence_){
 
     // execute a transformation (unconditionally)
+
     // [PARAMETER] [argument node], [new subtree's generation sequence]
 
     __node___record(node_);
@@ -157,7 +158,11 @@ trans trans_format(node * const node_, const void * const * const sequence_){
 trans trans_format_p(node * const node_, const void * const * const sequence_){
 
     // execute a transformation (under permission)
-    // [PARAMETER] [argument node], {[transformation's permission], [new subtree's generation sequence]}
+
+    // [PARAMETER] [argument node], [argument sequence]
+
+    // [SEQUENCE] argument sequence
+    // [transformation's permission], [new subtree's generation sequence]
 
     if(((trans_p)sequence_[0])·(node_)){
         __node___record(node_);
@@ -179,16 +184,18 @@ trans trans_invoke(node * const node_, const void * const * sequence_){
     // run the first transformation and invoke the others if successful
     // [REMARK] Return PASS when the first transformations return PASS, FAIL when at least one transformation return FAIL, else SUCCEED.
 
-    // [SEQUENCE]
+    // [PARAMETER] [argument node], [argument sequence]
+
+    // [SEQUENCE] argument sequence
     // [transformation 0], [argument sequence 0], ...({[transformation n], [argument node's positioning sequence n], [argument sequence n]})..., NULL
 
     __node___record(node_);
-    __trans___start(((trans_f)sequence_[0])·(node_, (void * *)sequence_[1]));
+    __trans___start(((trans_f)sequence_[0])·(node_, (const void * *)sequence_[1]));
     if(__trans__ == SUCCEED){
         __trans__ = PASS;
         sequence_ += 2;
         while(*sequence_){
-            __trans__ *= !(((trans_f *)*sequence_)[0])·(node_position(__node__, ((char * *)*sequence_)[1]), ((void * * *)*sequence_)[2]);
+            __trans__ *= !(((trans_f *)*sequence_)[0])·(node_position(__node__, ((char * *)*sequence_)[1]), ((const void * * *)*sequence_)[2]);
             sequence_++;
         }
         if(!__trans__){
@@ -207,12 +214,14 @@ trans trans_single(node * const node_, const void * const * sequence_){
     // try every transformation in order until one succeeds
     // [REMARK] Return the product of all tried transformations' return values.
 
-    // [SEQUENCE]
+    // [PARAMETER] [argument node], [argument sequence]
+
+    // [SEQUENCE] argument sequence
     // {[transformation 0], [argument sequence 0]}, ...({[transformation n], [argument sequence n]})..., NULL
 
     __trans___start(PASS);
     do{
-        __trans__ *= (((trans_f *)*sequence_)[0])·(node_, ((void * * *)*sequence_)[1]);
+        __trans__ *= (((trans_f *)*sequence_)[0])·(node_, ((const void * * *)*sequence_)[1]);
     } while( /* short-circuit evaluation */ __trans__ != SUCCEED && *(++sequence_) );
     return __trans___value;
 
@@ -222,7 +231,9 @@ trans trans_utmost(node * const subroot_, const void * const * sequence_){
 
     // try every transformation for every node in the subtree and keep repeating until all pass
 
-    // [SEQUENCE]
+    // [PARAMETER] [argument node], [argument sequence]
+
+    // [SEQUENCE] argument sequence
     // {[transformation 0], [argument sequence 0]}, ...({[transformation n], [argument sequence n]})..., NULL
 
     __node___record(subroot_);
@@ -240,7 +251,7 @@ trans trans_utmost(node * const subroot_, const void * const * sequence_){
                 __trans__ *= trans_utmost(__node__->child_r, sequence_);
                 break;
         }
-        __trans__ *= (((trans_f *)*sequence_)[0])·(__node__, ((void * * *)*sequence_)[1]);
+        __trans__ *= (((trans_f *)*sequence_)[0])·(__node__, ((const void * * *)*sequence_)[1]);
     } while( /* short-circuit evaluation */ __trans__ == SUCCEED || *(++sequence_) );
     return __trans___value;
 
