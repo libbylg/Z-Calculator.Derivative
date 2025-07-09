@@ -2,11 +2,14 @@
 
 # include "node.h"
 
-// Node Utility
+// Node Utilities
 
 node * node_position(node * node_, const char * sequence_){
 
     // use datum node and positioning sequence to position another node
+
+    // [PARAMETER] [datum node], [positioning sequence]
+
     // [LIST] positioning sequence
     // 'l' left child node
     // 'r' right child node
@@ -28,7 +31,10 @@ node * node_position(node * node_, const char * sequence_){
 
 const node * node_position_c(const node * node_, const char * sequence_){
 
-    // use datum node and positioning sequence to position another node
+    // use datum node(const) and positioning sequence to position another node(const)
+
+    // [PARAMETER] [datum node], [positioning sequence]
+
     // [LIST] positioning sequence
     // 'l' left child node
     // 'r' right child node
