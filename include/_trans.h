@@ -20,7 +20,7 @@ enum trans {
 // Tree Transformation Function Definition
 
 typedef int (*trans_p)(struct node *);
-typedef trans (*trans_f)(struct node *, void * *);
+typedef trans (*trans_f)(struct node *, const void * const *);
 
 // __trans__ Definition
 
