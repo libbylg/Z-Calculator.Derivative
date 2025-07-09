@@ -7,21 +7,27 @@
 typedef enum node_category node_category;
 enum node_category {
 
-	OBJECT, FUNCTION, OPERATION
+    OBJECT, FUNCTION, OPERATION
 
 };
+
+// Node Catagory Substitute
+
+# define OBJECT_s           "0"
+# define FUNCTION_s         "1"
+# define OPERATION_s        "2"
 
 // Node Definition
 
 typedef struct node node;
 struct node {
 
-    // [REMARK] Leaf nodes' left child nodes "represent" their values(string/constant/variable).
+    // [REMARK] Objects' left child nodes "represent" their values(string or variable).
 
     node_category category;
     const void * type;              /* case to (object_type *), (function_type *) or (operation_type *) */
     struct node * parent;           /* cast to (tree *) for root node */
-    struct node * child_l;          /* cast to other pointer types for object nodes */
+    struct node * child_l;          /* cast to other pointer types for objects */
     struct node * child_r;
 
 };
@@ -34,7 +40,7 @@ struct node {
 
 # define __node___record(Node) \
     node * const __parent__ = Node->parent; \
-    const int __index__ = node_index(Node);
+    const int __index__ = node_index(Node)
 
 # define __node___assign(NodeValue) \
     do{ \
@@ -45,9 +51,6 @@ struct node {
         } \
     } while(0)
 
-// Code Optimization
+// Node Utility
 
-# define OBJECT_s           "0"
-# define FUNCTION_s         "1"
-# define OPERATION_s        "2"
 # define node_index(Node)   (Node == Node->parent->child_r)
