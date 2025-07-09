@@ -1,15 +1,15 @@
 /// 2025 Z·Calculator.Derivative
 
-// [REMARK] This header file should not be included directly.
+// [REMARK] This header file should not be included.
 
-// Possible external header files to be included
+// External Headers
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <time.h>
 
-// Possible internal header files to be included
+// Internal Headers
 
 /* include */
 
@@ -25,7 +25,6 @@
     # include <stdlib.h>
     # include <string.h>
     # include "_variable.h"
-    # include "_node_type.h"
     # include "_node.h"
 # include "node_type.h"
     # include <string.h>
@@ -36,6 +35,7 @@
     # include <stdlib.h>
     # include <string.h>
     # include "_node_type.h"
+    # include "_tree.h"
     # include "_trans.h"
     # include "node.h"
 
