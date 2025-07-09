@@ -1,6 +1,6 @@
 # README
 
-This is the README documentation for the project __Z·Calculator__*.Derivative(2025)* (hereinafter referred to as _Derivative_).
+This is the README documentation for the project __Z·Calculator__ *.Derivative(2025)* (hereinafter referred to as _Derivative_).
 
 
 ## What Is It?
