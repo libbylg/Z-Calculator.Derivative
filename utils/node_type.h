@@ -7,5 +7,5 @@
 
 // Node Type Utilities
 
-function_type * search_function_type(const char *, function_type * const *);
-operation_type * search_operation_type(const char *, operation_type * const *);
+const function_type * search_function_type(const char *, const function_type * const *);
+const operation_type * search_operation_type(const char *, const operation_type * const *);
