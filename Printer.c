@@ -20,7 +20,7 @@ void print(const char * const string_){
 
 void Print_s(const node * const subroot_){
 
-    // print a subtree (standard)
+    // print a subtree
 
     if(subroot_){
         switch(subroot_->category){
